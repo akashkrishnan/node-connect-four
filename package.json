@@ -8,5 +8,19 @@
     "test": "node test.js"
   },
   "author": "Akash Krishnan <ak@aakay.net>",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akashkrishnan/node-connect-four.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akashkrishnan/node-connect-four/issues"
+  },
+  "homepage": "https://github.com/akashkrishnan/node-connect-four",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.3.1",
+    "express": "^4.10.0",
+    "socket.io": "^1.1.0"
+  }
 }
