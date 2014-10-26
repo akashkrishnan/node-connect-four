@@ -1,0 +1,12 @@
+{
+  "name": "node-connect-four",
+  "version": "0.0.0",
+  "description": "node-connect-four",
+  "main": "index.js",
+  "scripts": {
+    "run": "node index.js",
+    "test": "node test.js"
+  },
+  "author": "Akash Krishnan <ak@aakay.net>",
+  "license": "MIT"
+}
