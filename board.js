@@ -37,7 +37,7 @@ Board.prototype.getValidMoves = function () {
 
 Board.prototype.makeMove = function (move, done) {
   if (this.currentPlayer) {
-    if (this.getValidMoves().indexOf(move) > -1) {
+    if (this.height[move] < this.rows) {
       this.board[move][this.height[move]] = this.currentPlayer;
       this.height[move]++;
       this.moves.push(move);
@@ -60,25 +60,9 @@ Board.prototype.undoMove = function (done) {
 
 Board.prototype.updateStatus = function () {
   if (this.currentPlayer) {
-
-    // Check if no more moves
-    if (this.moves.length == this.rows * this.cols) this.currentPlayer = 0;
-
-    // Check for winner
     this.winningPlayer = oppScore(this, 0, this.connect, true);
-    if (this.winningPlayer) this.currentPlayer = 0;
-
+    if (this.winningPlayer || this.moves.length == this.rows * this.cols) this.currentPlayer = 0;
   }
-};
-
-Board.prototype.toString = function () {
-  var lines = [];
-  for (var r = this.rows - 1; r >= 0; r--) {
-    var line = [];
-    for (var c = 0; c < this.cols; c++) line.push(this.board[c][r] || '.');
-    lines.push(line.join(' '));
-  }
-  return lines.join('\n');
 };
 
 Board.prototype.clone = function () {
@@ -91,6 +75,16 @@ Board.prototype.clone = function () {
   b.currentPlayer = this.currentPlayer;
   b.winningPlayer = this.winningPlayer;
   return b;
+};
+
+Board.prototype.toString = function () {
+  var lines = [];
+  for (var r = this.rows - 1; r >= 0; r--) {
+    var line = [];
+    for (var c = 0; c < this.cols; c++) line.push(this.board[c][r] || '.');
+    lines.push(line.join(' '));
+  }
+  return lines.join('\n');
 };
 
 function oppScore(Board, p, connect, winner) {
